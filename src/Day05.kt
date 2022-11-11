@@ -9,6 +9,12 @@ fun main() {
                 this.zipWithNext().any { it.first == 'p' && it.second == 'q' } ||
                 this.zipWithNext().any { it.first == 'x' && it.second == 'y' }
 
+        fun isNice(input: String): Boolean {
+            return !input.hasUnwantedStrings()
+        }
+
+
+
         return input.size
 
     }
