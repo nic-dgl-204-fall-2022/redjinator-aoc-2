@@ -63,7 +63,43 @@ fun main() {
     println(part1(input))
 }
 ```
----
+### Obstacle #1
+I used the `readInput()` function from the `Utils.kt` to get the list of strings from file and then pass it as an argument to the function `part1(input)`.
+
+### Obstacle #2
+I used String extension functions for each condition/criteria, it was much simpler to write out the required functions due to the ease of referencing the strings using `this` and `it`.
+
+`String.hasUnwantedStrings()` Makes use of the function `this.zipWithNext()` returns a list of pairs which are referenced using `it.first` and `it.second` for comparrison with the unwanted string types. When it is called it uses the ! not operator, so if there are no unwanted strings present the function returns true. 
+
+`String.hasVowels()` Iterates through the string, checking each character against the sample string of vowels provided. If vowels found are greater or equal to 3 it returns true.
+
+`String.hasLetterTwice()` Similiar to `String.hasUnwantedStrings()` the difference being that `it.first` and `it.second` are  checked for equal
+
+### Obstacles #3 & #4
+`isNice(str: String): Boolean` function takes a string as argument and checks for the pre-determined criteria using the extension functions returning true if the string made the nice list and false if it does not.
+
+I used a for loop to iterate through the input list and a when condition to increase the `totalNiceList` if a string `isNice()` and finally the part1() will return the total number on the nice list. `return totalNiceList`. 
+```
+var totalNiceList = 0
+
+for(string in input) {
+    when(isNice(string)) {
+        true -> totalNiceList++
+        false -> continue
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
 
 Welcome to the Advent of Code[^aoc] Kotlin project created by [redjinator][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
 
