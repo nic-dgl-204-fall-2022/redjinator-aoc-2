@@ -1,9 +1,7 @@
-import java.io.File
-
 fun main() {
     fun part1(input: List<String>): Int {
 
-        // Obstacle #2: Functions to check for each of the 3 criteria
+        // Extension functions to check for each of the criteria
         fun String.hasUnwantedStrings() = this.zipWithNext().any { it.first == 'a' && it.second == 'b' } ||
                 this.zipWithNext().any { it.first == 'c' && it.second == 'd' } ||
                 this.zipWithNext().any { it.first == 'p' && it.second == 'q' } ||
@@ -12,33 +10,25 @@ fun main() {
         fun String.hasVowels()      = this.count { it in "aeiou" } >= 3
         fun String.hasLetterTwice() = this.zipWithNext().any { it.first == it.second }
 
-        // Checks if the string is nice
+        // Checks string eligibility for nice list
         fun isNice(str: String): Boolean {
-            return !str.hasUnwantedStrings()
+            return !str.hasUnwantedStrings() && str.hasVowels() && str.hasLetterTwice()
         }
-
 
         var totalNiceList = 0
 
-
-        // Obstacle #3: Iterate through the list checking each string
         for(string in input) {
-
-            // Obstacle #4: Keep a total of strings that make the nice list
-            if(isNice(string)) {
-                totalNiceList++
+            when(isNice(string)) {
+                true -> totalNiceList++
+                false -> continue
             }
         }
 
         return totalNiceList
-
     }
 
-
-
-    // Obstacle #1: Read input from file
+    // Part 1
     val input = readInput("input")
-
     println(part1(input))
 
 }
