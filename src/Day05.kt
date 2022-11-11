@@ -9,13 +9,28 @@ fun main() {
                 this.zipWithNext().any { it.first == 'p' && it.second == 'q' } ||
                 this.zipWithNext().any { it.first == 'x' && it.second == 'y' }
 
-        fun isNice(input: String): Boolean {
-            return !input.hasUnwantedStrings()
+        fun String.hasVowels()      = this.count { it in "aeiou" } >= 3
+        fun String.hasLetterTwice() = this.zipWithNext().any { it.first == it.second }
+
+        // Checks if the string is nice
+        fun isNice(str: String): Boolean {
+            return !str.hasUnwantedStrings()
         }
 
 
+        var totalNiceList = 0
 
-        return input.size
+
+        // Obstacle #3: Iterate through the list checking each string
+        for(string in input) {
+
+            // Obstacle #4: Keep a total of strings that make the nice list
+            if(isNice(string)) {
+                totalNiceList++
+            }
+        }
+
+        return totalNiceList
 
     }
 
