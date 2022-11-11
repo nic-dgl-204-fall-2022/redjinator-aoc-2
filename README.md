@@ -30,7 +30,38 @@ eavfzjajkjesnlsb
 #### part1() function
 As per normal the part1() function will be the intended implementation of our solution which will return an Int variable representing the total number of strings that meet all 3 of our pre-determined critera for the nice list. The list of measurements in the file input.txt is obtained using readInput() found in Utils.kt and passed as an argument to part1().
 ```
+fun main() {
+    fun part1(input: List<String>): Int {
 
+        // Extension functions to check for each of the criteria
+        fun String.hasUnwantedStrings() = this.zipWithNext().any { it.first == 'a' && it.second == 'b' } ||
+                this.zipWithNext().any { it.first == 'c' && it.second == 'd' } ||
+                this.zipWithNext().any { it.first == 'p' && it.second == 'q' } ||
+                this.zipWithNext().any { it.first == 'x' && it.second == 'y' }
+
+        fun String.hasVowels()      = this.count { it in "aeiou" } >= 3
+        fun String.hasLetterTwice() = this.zipWithNext().any { it.first == it.second }
+
+        // Checks string eligibility for nice list
+        fun isNice(str: String): Boolean {
+            return !str.hasUnwantedStrings() && str.hasVowels() && str.hasLetterTwice()
+        }
+
+        var totalNiceList = 0
+
+        for(string in input) {
+            when(isNice(string)) {
+                true -> totalNiceList++
+                false -> continue
+            }
+        }
+
+        return totalNiceList
+    }
+    
+    val input = readInput("input")
+    println(part1(input))
+}
 ```
 ---
 
