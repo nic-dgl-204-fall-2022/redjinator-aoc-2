@@ -3,7 +3,7 @@
 [Day 5 - Advent of Code 2015](https://adventofcode.com/2015/day/5)
 
 ## Overview of problem
-For this problem we have a large list of strings in a text file and we want to know how many of these strings meet the critera for the Nice List:
+For this problem we have a large list of strings in a text file and we want to evaluate each one to find out how many of them meet the critera to be on Santa's the nice list:
     1. Must contain 3 vowels
     2. Must contain at least one letter that appears twice in a row. (ex: 'xx')
     3. Must NOT contain the strings: "ab", "cd", "pq", "xy". Even if they are part of another requirement.
@@ -21,10 +21,17 @@ eavfzjajkjesnlsb
 
 ### Obstacles
 * Get strings from file and convert to a list.
-* Iterate through the list
-* Check for the 3 conditions
-* Keep a count of the strings that make the nice list.
+* Functions to check for each of the 3 criteria required to make the nice list .
+* Iterate through the list and evaluate each string
+* Keep a count of the total strings that make the nice list.
 
+### First Solution
+
+#### part1() function
+As per normal the part1() function will be the intended implementation of our solution which will return an Int variable representing the total number of strings that meet all 3 of our pre-determined critera for the nice list. The list of measurements in the file input.txt is obtained using readInput() found in Utils.kt and passed as an argument to part1().
+```
+
+```
 ---
 
 Welcome to the Advent of Code[^aoc] Kotlin project created by [redjinator][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
