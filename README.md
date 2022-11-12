@@ -90,7 +90,23 @@ for(string in input) {
 }
 ```
 
+---
 
+## Overview of problem 2
+This problem is very similiar to the first in that there are 2 criteria that strings need to meet in order
+to make the nice list. The previous 3 criteria are not longer applicable, and the 2 new criteria are as follows:
+* contains a pair of any two letters that appear twice in the string but do not overlap. Ex: xyxy, aabcaa.
+* contains at least one letter which repeats with exactly one letter in between them. Ex: xyx, abcdc.
+
+### Obstacles
+* Functions to check for the 2 new criteria required to make the nice list.
+
+## Second solution
+### part2() function
+
+Just as in part1 we will be using the part2() function provided as our means of completing the task.
+
+# Will return to finish and write reflection tonight.
 
 
 
