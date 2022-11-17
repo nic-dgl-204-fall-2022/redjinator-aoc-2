@@ -137,7 +137,7 @@ The first extension function was:
 This function satisfies the condition "It contains at least one letter which repeats with exactly one letter between them, like xyx, abcdefeghi (efe), or even aaa." by iterating through the string in chunks of 3 using `this.windowed(3)` and checking if the first and last character are equal with `.any { it.first() == it.last() }`. The `.any()` function returns true if our predicate (new word I learned :)) matches.
 
 I should mention here that originally I figured I didn't need the to use the `.any()` function since using comparison operators gives us a boolean return anyway but I quickly realized the any() function gives us access to `it` which again makes my life much easier.
-I tried to write this without using `.any()` and without using extension functions and I wasn't happen with it. It doesn't look as clean enough, at least not in comparison to the extension function.
+I tried to write this without using `.any()` and without using extension functions and I wasn't happy with it. 
 ```
 for(i in 0..str.length - 3) {
     if(str[i] == str[i + 2]) {
@@ -146,9 +146,16 @@ for(i in 0..str.length - 3) {
     }
 }
 ```
+It doesn't look as clean enough, at least not in comparison to using an extension function. Plus I need to pass the string too it, with extension functions my string will just check itself.
+
+The second extension function was:
+`fun String.checkForPairs() = this.windowed(2).count() > this.windowed(2).distinct().count()`
+So this one caused me some trouble at first but was so simple in the end. First we count the amount of pairs a string can make, then we do the same thing but only count distinct or unique pairs so if we have 2 matching pairs the `.distinct()` will not count one of them leaving us a sign that we've detected at least a double pair. 
 
 
+## Reflection
 
+for reflection: I've learned some new techniques and gotten some practice using 'it'
 
 
 
