@@ -106,8 +106,46 @@ to make the nice list. The previous 3 criteria are not longer applicable, and th
 
 Just as in part1 we will be using the part2() function provided as our means of completing the task.
 
-# Will return to finish and write reflection tonight.
+```
+    fun part2(input: List<String>): Int {
 
+        // Criteria for nice list
+        val pattern = Regex("(..).*\\1")
+        fun String.equalEnds() = this.windowed(3).any { it.first() == it.last() }
+        fun String.checkForPairs() = this.windowed(2).count() > this.windowed(2).distinct().count()
+
+        // Nice list check
+        fun isNice(str: String) = pattern.containsMatchIn(str) && str.checkForPairs() && str.equalEnds()
+
+        var totalNiceList   = 0
+
+        for(string in input) {
+            when(isNice(string)) {
+                true        -> totalNiceList++
+                false       -> continue
+            }
+        }
+
+        return totalNiceList
+    }
+```
+
+## Obstacle 1: Functions to check for the 2 new criteria required to make the nice list.
+
+The first extension function was: 
+```fun String.equalEnds() = this.windowed(3).any { it.first() == it.last() }```
+This function satisfies the condition "It contains at least one letter which repeats with exactly one letter between them, like xyx, abcdefeghi (efe), or even aaa." by iterating through the string in chunks of 3 using `this.windowed(3)` and checking if the first and last character are equal with `.any { it.first() == it.last() }`. The `.any()` function returns true if our predicate (new word I learned :)) matches.
+
+I should mention here that originally I figured I didn't need the to use the `.any()` function since using comparison operators gives us a boolean return anyway but I quickly realized the any() function gives us access to `it` which again makes my life much easier.
+I tried to write this without using `.any()` and without using extension functions and I wasn't happen with it. It doesn't look as clean enough, at least not in comparison to the extension function.
+```
+for(i in 0..str.length - 3) {
+    if(str[i] == str[i + 2]) {
+        hasRepeatingLetter = true
+        break
+    }
+}
+```
 
 
 
