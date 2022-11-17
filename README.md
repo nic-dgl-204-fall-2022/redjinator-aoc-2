@@ -152,10 +152,15 @@ The second extension function was:
 `fun String.checkForPairs() = this.windowed(2).count() > this.windowed(2).distinct().count()`
 So this one caused me some trouble at first but was so simple in the end. First we count the amount of pairs a string can make, then we do the same thing but only count distinct or unique pairs so if we have 2 matching pairs the `.distinct()` will not count one of them leaving us a sign that we've detected at least a double pair. 
 
+The rest of the solution follows the same route as Part1.
+
 
 ## Reflection
 
 for reflection: I've learned some new techniques and gotten some practice using 'it'
+Actually time in front of computer is hard to measure on this one as it was spread over about 10 micro sessions less than an hour each. I think that's the best estimate I can give for reflection. I referenced the Kotlin docs a lot for this one and my approach to the solutions is a direct reflection of that as these would not have been my approaches prior to this term. I'm really liking extension functions and the convenience they bring. Oh one thing I forgot to mention was my complete struggle with Regex. That one pattern `val pattern = Regex("(..).*\\1")` took a good hour probabley 2 to get right and full disclosure, that was a few days ago and I can't tell you what it's doing now and since I'm so time crunched I'm happy enough with this for the moment. I know I can reproduce if I need too. I intend to grow this skill too as it's apparent regex is basically steroids for parsing data. I get it, I'm just not highly proficient with it yet.
+
+End
 
 
 
