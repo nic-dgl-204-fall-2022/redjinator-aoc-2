@@ -2,7 +2,7 @@ fun main() {
     fun part1(input: List<String>): Int {
 
         // Extension functions to check for each of the criteria
-        fun String.hasUnwantedStrings() = this.zipWithNext().any { it.first == 'a' && it.second == 'b' } ||
+        fun String.hasUnwantedStrings() = this.windowed(2).any { it.first() == 'a' && it.last() == 'b' } ||
                 this.zipWithNext().any { it.first == 'c' && it.second == 'd' } ||
                 this.zipWithNext().any { it.first == 'p' && it.second == 'q' } ||
                 this.zipWithNext().any { it.first == 'x' && it.second == 'y' }
@@ -17,13 +17,12 @@ fun main() {
         var totalNiceList = 0
 
         for(string in input) {
-            when(isNice(string)) {
-                true        -> totalNiceList++
-                false       -> continue
-            }
+            if (isNice(string)) totalNiceList++
         }
 
-        return totalNiceList
+        return input.filter { isNice(it) }.count()
+
+//        return totalNiceList
     }
 
 
@@ -33,12 +32,11 @@ fun main() {
     fun part2(input: List<String>): Int {
 
         // Criteria for nice list
-        val pattern = Regex("(..).*\\1")
+        val pattern = Regex("(..).*\\1") 
         fun String.equalEnds() = this.windowed(3).any { it.first() == it.last() }
-        fun String.checkForPairs() = this.windowed(2).count() > this.windowed(2).distinct().count()
 
         // Nice list check
-        fun isNice(str: String) = pattern.containsMatchIn(str) && str.checkForPairs() && str.equalEnds()
+        fun isNice(str: String) = pattern.containsMatchIn(str) && str.equalEnds()
 
         var totalNiceList   = 0
 
